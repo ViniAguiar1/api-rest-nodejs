@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "knex": "knex",
     "lint": "eslint src --ext .ts"
   },
   "keywords": [],
@@ -14,7 +15,8 @@
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^22.13.4",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "fastify": "^5.2.1",
