@@ -6,7 +6,10 @@
     "dev": "tsx watch src/server.ts",
     "knex": "knex",
     "lint": "eslint src --ext .ts",
-    "test": "vitest"
+    "test": "vitest",
+    "migrate:latest": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "migrate:rollback-all": "knex migrate:rollback --all"
   },
   "keywords": [],
   "author": "",
