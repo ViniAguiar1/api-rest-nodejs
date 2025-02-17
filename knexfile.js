@@ -3,11 +3,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("./src/database");
 const config = {
     development: {
-        client: 'sqlite3',
+        client: 'pg',
         connection: {
-            filename: './dev.sqlite3'
+            host: '127.0.0.1',
+            user: 'your_database_user',
+            password: 'your_database_password',
+            database: 'myapp_test'
         },
-        useNullAsDefault: true
+        pool: {
+            min: 2,
+            max: 10
+        },
+        migrations: {
+            tableName: 'knex_migrations'
+        }
     },
     production: {
         client: 'pg',
