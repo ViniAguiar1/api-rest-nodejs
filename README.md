@@ -34,7 +34,7 @@ Esta é uma API REST para gerenciar transações financeiras, construída com No
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/apirest-nodejs.git
+   git clone https://github.com/ViniAguiar1/apirest-nodejs.git
    ```
 2. Navegue até o diretório do projeto:
    ```sh

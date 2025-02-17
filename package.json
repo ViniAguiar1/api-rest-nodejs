@@ -6,6 +6,7 @@
     "dev": "tsx watch src/server.ts",
     "knex": "knex",
     "lint": "eslint src --ext .ts",
+    "build": "tsup src",
     "test": "vitest",
     "migrate:latest": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback",
@@ -21,6 +22,7 @@
     "@types/supertest": "^6.0.2",
     "supertest": "^7.0.0",
     "ts-node": "^10.9.1",
+    "tsup": "^8.3.6",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
