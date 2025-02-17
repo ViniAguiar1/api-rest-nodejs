@@ -1,15 +1,13 @@
 import fastify from 'fastify'
-import fastifySwagger from 'fastify-swagger'
-import { knex } from './database'
-import { env } from './env'
+import fastifySwagger from '@fastify/swagger'
+import fastifySwaggerUi from '@fastify/swagger-ui'
+import cookie from '@fastify/cookie'
 import { TransactionsRoutes } from './routes/transactions'
 
 // Criando uma instância do Fastify
 const app = fastify()
-
-// Registrar o plugin Swagger
+app.register(cookie)
 app.register(fastifySwagger, {
-  routePrefix: '/documentation', // Caminho para acessar a documentação
   swagger: {
     info: {
       title: 'API de Transações',
@@ -23,9 +21,12 @@ app.register(fastifySwagger, {
     schemes: ['http'],
     consumes: ['application/json'],
     produces: ['application/json'],
-  },
+  }
+})
+app.register(fastifySwaggerUi, {
+  routePrefix: '/documentation', // Caminho para acessar a documentação
   uiConfig: {
-    docExpansion: 'full',
+    docExpansion: 'none', // Define para não expandir os métodos por padrão
     deepLinking: false,
   },
   staticCSP: true,

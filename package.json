@@ -19,9 +19,12 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@fastify/cookie": "^11.0.2",
     "@fastify/static": "^5.0.0",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.2",
     "dotenv": "^16.4.7",
-    "fastify": "^3.29.5",
+    "fastify": "^5.2.1",
     "fastify-swagger": "^5.1.1",
     "knex": "^3.1.0",
     "sqlite3": "^5.1.7",
