@@ -63,4 +63,79 @@ describe('Transactions routes', () => {
 
     console.log(listTransactionsResponse.body)
   })
+
+  test('user can list a specific transaction', async () => {
+    const createTransactionResponse = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'Salário',
+        amount: 1000,
+        type: 'credit',
+      })
+
+    const cookies = createTransactionResponse.get('Set-Cookie')
+
+    if (!cookies) {
+      throw new Error('Cookies not set')
+    }
+
+    const listTransactionsResponse = await request(app.server)
+      .get('/transactions')
+      .set('Cookie', cookies)
+      .expect(200)
+
+    const transactionId = listTransactionsResponse.body.transactions[0].id
+
+    const getTransactionResponse = await request(app.server)
+      .get(`/transactions/${transactionId}`)
+      .set('Cookie', cookies)
+      .expect(200)
+
+      expect(getTransactionResponse.body.transaction).toEqual(
+        expect.objectContaining({
+          title: 'Salário',
+          amount: 1000,
+        }),
+      )
+
+    console.log(listTransactionsResponse.body)
+  })
+
+  test('user can list a summary about transactions', async () => {
+    const createTransactionResponse = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'Salário',
+        amount: 1000,
+        type: 'credit',
+      })
+
+    const cookies = createTransactionResponse.get('Set-Cookie')
+
+    await request(app.server)
+      .post('/transactions')
+      .set('Cookie', cookies)
+      .send({
+        title: 'Debit transaction',
+        amount: 300,
+        type: 'credit',
+      })
+
+    if (!cookies) {
+      throw new Error('Cookies not set')
+    }
+
+    const summaryResponse = await request(app.server)
+      .get('/transactions/summary')
+      .set('Cookie', cookies)
+      .expect(200)
+
+
+      expect(summaryResponse.body.summary).toEqual({
+        amount: 1300,
+      }
+      )
+
+    console.log(summaryResponse.body)
+  })
 })
