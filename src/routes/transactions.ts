@@ -4,7 +4,17 @@ import crypto from 'node:crypto'
 import { knex } from '../database'
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
+// Teste mais famosos
+
+// Teste de integração: Testa a integração entre diferentes partes do sistema
+// Teste de unidade: Testa uma unidade de código
+// Teste de ponta a ponta: Testa o sistema como um todo
+
 export async function TransactionsRoutes(app: FastifyInstance) {
+  app.addHook('preHandler', async (req, res) => {
+    console.log(`[${req.method}] ${req.url}`)
+  })
+
   app.post(
     '/',
     {
@@ -187,7 +197,7 @@ export async function TransactionsRoutes(app: FastifyInstance) {
     },
     async (req, res) => {
       const { sessionId } = req.cookies
-      
+
       const summary = await knex('transactions')
       .sum('amount', { as: 'amount' })
       .where('session_id', sessionId)
