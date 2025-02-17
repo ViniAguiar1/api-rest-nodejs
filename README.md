@@ -26,9 +26,13 @@ Esta é uma API REST para gerenciar transações financeiras, construída com No
 - TypeScript
 - Knex.js
 - SQLite
+- PostgreSQL
 - Zod
 - Vitest
 - Supertest
+- Dotenv
+- TSUP
+- ESLint
 
 ## Instalação
 
@@ -43,6 +47,24 @@ Esta é uma API REST para gerenciar transações financeiras, construída com No
 3. Instale as dependências:
    ```sh
    npm install
+   ```
+
+## Configuração
+
+1. Crie um arquivo `.env` na raiz do projeto e adicione as variáveis de ambiente necessárias:
+   ```env
+   NODE_ENV=development
+   DATABASE_CLIENT=sqlite
+   DATABASE_URL=./dev.sqlite3
+   PORT=3333
+   ```
+
+2. Para o ambiente de teste, crie um arquivo `.env.test`:
+   ```env
+   NODE_ENV=test
+   DATABASE_CLIENT=sqlite
+   DATABASE_URL=./test.db
+   PORT=3333
    ```
 
 ## Uso
@@ -61,6 +83,13 @@ Para rodar os testes, execute:
 npm run test
 ```
 
+### Build
+
+Para gerar o build do projeto, execute:
+```sh
+npm run build
+```
+
 ## Estrutura do Projeto
 
 ```plaintext
@@ -72,9 +101,14 @@ npm run test
 │   │   └── transactions.ts
 │   ├── middlewares
 │   │   └── check-session-id-exists.ts
+│   ├── env
+│   │   └── index.ts
 │   └── database.ts
 ├── test
-│   └── example.spec.ts
+│   └── transactions.spec.ts
+├── db
+│   └── migrations
+│       └── 20231010120000_create_transactions_table.js
 ├── package.json
 └── README.md
 ```
@@ -104,6 +138,16 @@ npm run test
 ### Resumo das Transações
 
 - **GET** `/transactions/summary`
+
+## Contribuição
+
+Se você deseja contribuir com este projeto, siga os passos abaixo:
+
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`).
+4. Faça um push para a branch (`git push origin feature/nova-feature`).
+5. Abra um Pull Request.
 
 ## Licença
 
